@@ -4,8 +4,8 @@ from users.models import User
 
 class Command(BaseCommand):
     def handle(self, *args, **options):
-        user = User.objects.create(email='')
-        user.set_password('')
+        user = User.objects.create(email='django@mail.ru')
+        user.set_password('Suck123!')
         user.is_active = True
         user.is_staff = True
         user.is_superuser = True
