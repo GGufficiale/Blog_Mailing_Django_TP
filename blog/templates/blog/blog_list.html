@@ -48,7 +48,6 @@
 {% for object in blog_list %}
 <div class="col">
     <div class="card shadow-sm">
-        <img src="{{ object.picture|my_media }}">
         <div class="card-body">
             <p class="card-text">{{ object.name }}</p>
             <p class="card-text">Текст: {{ object.content|truncatechars:100 }}</p>
