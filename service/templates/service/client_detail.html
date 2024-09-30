@@ -17,8 +17,12 @@
                     {{ object.comment|truncatechars:20 }}
                     <p>
                         <a href="{% url 'service:client_list' %}"
-                           class="btn btn-primary justify-content-md-center my-5">Клиент созданный, {{object.owner}} $</a>
+                           class="btn btn-primary justify-content-md-center my-5">Клиент, созданный {{object.owner}}</a>
                     </p>
+                    <div class="btn-group">
+                        <a class="btn btn-lg btn-primary" href="{% url 'service:client_list' %}"
+                           role="button">Назад</a>
+                    </div>
                 </div>
             </div>
 

@@ -15,10 +15,9 @@
                                         <form method="post" enctype="multipart/form-data">
                                             {% csrf_token %}
                                             <p> Хотите удалить запись "{{ object.first_name }}"? </p>
-                                            <button type="submit" class="btn btn-lg btn-block btn-outline-primary">Подтвердить</button>
-
+                                            <button type="submit" class="btn btn-lg btn-block btn-success">Подтвердить</button>
                                         </form>
-                                        <a href="{% url 'service:client_list' %}" class="btn btn-lg btn-block btn-outline-primary">Отмена</a>
+                                        <a href="{% url 'service:client_list' %}" class="btn btn-lg btn-block btn-danger">Отмена</a>
 
                                     </div>
                                 </div>

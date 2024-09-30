@@ -20,6 +20,10 @@
                                         {% else %}
                                         <button type="submit" class="btn btn-primary">Сохранить</button>
                                         {% endif %}
+                                        <div class="btn-group">
+                                            <a class="btn btn-primary" href="{% url 'service:message_list' %}"
+                                               role="button">Назад</a>
+                                        </div>
                                     </form>
                                 </div>
                             </div>
