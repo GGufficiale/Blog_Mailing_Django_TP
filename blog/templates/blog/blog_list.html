@@ -2,8 +2,13 @@
 
 {% block content %}
 <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
-    <h1 class="display-4">Блог</h1>
+    <h1 class="fw-light"> Это БЛОГ </h1>
+    <p class="lead text-body-secondary">Тут надо писать. Ударение на второй слог.</p>
     <p class="lead">{{ title }}</p>
+    <p>
+        <a class="btn btn-primary" href="{% url 'blog:blog_create' %}"
+           role="button">Создать заметку</a>
+    </p>
 </div>
 <div class="container">
     <div class="row text-left">
@@ -39,3 +44,36 @@
     </div>
 </div>
 {% endblock %}
+
+{% for object in blog_list %}
+<div class="col">
+    <div class="card shadow-sm">
+        <img src="{{ object.picture|my_media }}">
+        <div class="card-body">
+            <p class="card-text">{{ object.name }}</p>
+            <p class="card-text">Текст: {{ object.content|truncatechars:100 }}</p>
+            <p class="card-text">К-во просмотров: {{ object.number_of_views }}</p>
+            <p class="card-text">Дата записи: {{ object.date_of_publication }}</p>
+            <p class="card-text">Опубликовано: {{ object.is_active }}</p>
+            <!--Этой строкой для единообразия выводимых карточек отображаемое описание ограничивается 100 символами.-->
+            <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group">
+                    <a class="btn btn-primary" href="{% url 'blog:blog_update' object.pk %}"
+                       role="button">Редактировать</a>
+                    <a class="btn btn-primary" href="{% url 'blog:blog_detail' object.pk %}"
+                       role="button">Посмотреть</a>
+                    <a class="btn btn-primary" href="{% url 'blog:blog_delete' object.pk %}" role="button">Удалить</a>
+                </div>
+                <small class="text-body-secondary">Не будем вычислять тебя по айпи</small>
+                {% if user.is_authenticated %}
+                {% if blog.is_active %}
+                <a class="btn btn-warning" href="{% url 'blog:toggle_activity' object.pk %}">Снять с публикации</a>
+                {% else %}
+                <a class="btn btn-success" href="{% url 'blog:toggle_activity' object.pk %}">Опубликовать</a>
+                {% endif %}
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endfor %}
